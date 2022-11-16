@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from "react-router-dom";
 import './App.css';
 
 import Home from "./Home";
@@ -15,6 +14,7 @@ useEffect(()=>{
   fetch('http://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=astro&output=json')
   .then(res=>res.json())
   .then(data=>{
+    console.log(data)
     const newData = data.dataseries
     const filterdData = newData.filter(ticker=>{
       if(Hourly.includes(ticker.timepoint)){
@@ -30,12 +30,10 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={
+      
           <Home 
             weatherData={weatherData}
-          />} />
-      </Routes>
+          />
     </div>
   );
 }
